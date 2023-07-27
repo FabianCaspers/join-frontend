@@ -213,13 +213,13 @@ async function signUp(e) {
         'password': password.value
     };
 
-    // Die Anfrage erfolgt jetzt über fetch an die Django-API
+   
     try {
-        const response = await fetch('http://127.0.0.1:8000/joinlogin/register/', {
+        const response = await fetch('http://127.0.0.1:8000/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRFToken': getCSRFToken(), // Funktion zum Abrufen des CSRF-Tokens
+                'X-CSRFToken': getCSRFToken(),
             },
             body: JSON.stringify(user),
         });
@@ -250,7 +250,7 @@ async function logIn() {
 
         
         try {
-            const response = await fetch('http://127.0.0.1:8000/joinlogin/login/', {
+            const response = await fetch('http://127.0.0.1:8000/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
