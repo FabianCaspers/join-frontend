@@ -1,0 +1,5 @@
+.legal-notice-container {
+    padding: 3rem 5%;
+    height: 92vh;
+    overflow-y: scroll;
+}

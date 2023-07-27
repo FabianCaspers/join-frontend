@@ -1,0 +1,158 @@
+.sidenav-container {
+    width: 200px;
+    height: 100vh;
+    background-color: #2A3647;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3rem 0rem;
+}
+
+.join-logo {
+    object-fit: cover;
+}
+
+.nav-main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.nav-link {
+    color: whitesmoke;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link:hover {
+    background-color: #091931;
+    transition: all ease-in-out 125ms;
+}
+
+.active-link {
+    background-color: #091931;
+}
+
+.active-link-mobile {
+    border-top: 2px solid #091931;
+}
+
+
+.nav-link>img {
+    width: 20px;
+    height: 20px;
+    margin-right: 1rem;
+}
+
+.home-icon {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(101deg) brightness(101%) contrast(102%);
+    width: 28px !important;
+    height: 28px !important;
+    margin-left: -2.5px;
+}
+
+.nav-footer {
+    width: 100%;
+}
+
+@media (min-width: 2560px) {
+    .sidenav-container {
+        width: 280px;
+    }
+
+    .nav-link {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .nav-link>img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .home-icon {
+        width: 38px !important;
+        height: 38px !important;
+    }
+}
+
+@media (max-width:1024px) {
+    .sidenav-container {
+        width: 150px;
+    }
+
+    .nav-link {
+        font-size: 0.8rem;
+        padding: 1rem;
+    }
+
+    .join-logo {
+        width: 75px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidenav-container {
+        /* width: 190px; */
+    }
+
+    .nav-link {
+        /* padding: 1rem 2rem; */
+        /* font-size: 0.9rem; */
+    }
+}
+
+/* 425 PX */
+@media (max-width: 600px) {
+    .sidenav-container {
+        display: none;
+    }
+
+    .header-container {
+        border-left: unset;
+    }
+
+    .headline-container>p {
+        display: none;
+    }
+
+    .questionmark-icon {
+        display: none;
+    }
+
+    .nav-mobile {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: #2A3647;
+        height: 75px;
+        display: flex;
+        justify-content: space-around;
+    }
+
+
+    .nav-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: unset;
+        width: 100%;
+    }
+
+    .nav-link>img {
+        margin-right: unset;
+    }
+}
+
+/* 426 PX */
+@media (min-width: 601px) {
+    .nav-mobile {
+        display: none;
+    }
+}

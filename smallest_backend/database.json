@@ -1,0 +1,3 @@
+{"currentUser":"\"Guest\"",
+"allTasks":"[{\"title\":\"Test\",\"description\":\"Tst\",\"category\":\"Design\",\"assigned\":\"Fabian Caspers\",\"dueDate\":\"2022-12-19\",\"prio\":\"urgent\",\"id\":0792616689,\"status\":\"in-progress\"},{\"title\":\"asdf\",\"description\":\"asdfas\",\"category\":\"Design\",\"assigned\":\"Fabian Caspers\",\"dueDate\":\"2022-12-14\",\"prio\":\"medium\",\"id\":1670788930314,\"status\":\"done\"}]",
+"allContacts":"[{\"name\":\"Guest User\",\"email\":\"guest@user.com\",\"phone\":\"0762146654\",\"company\":\"DA\",\"color\":\"#4F8978\"}]"}

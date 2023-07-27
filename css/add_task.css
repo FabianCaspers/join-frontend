@@ -1,0 +1,505 @@
+.add-task-container {
+    padding: 3rem 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.headline-dialog {
+    font-size: 3rem;
+}
+
+.headline {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+}
+
+.form-container-dialog {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.form-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+/* === Left Form Container === */
+
+.left-form-container {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    /* border-right: 1px solid #D1D1D1; */
+    /* padding-right: 5rem; */
+    /* padding-top: 1rem; */
+    /* padding-bottom: 1rem; */
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 2rem;
+}
+
+.add-task-inputfield {
+    border: 1px solid #D1D1D1;
+    /* max-width: 422px; */
+    height: 40px;
+    border-radius: 10px;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    outline: none;
+}
+
+textarea {
+    border: 1px solid #D1D1D1;
+    /* width: 422px; */
+    height: 80px;
+    border-radius: 10px;
+    padding: 1rem;
+    resize: none;
+    outline: none;
+}
+
+hr {
+    border: none;
+    border-left: 1px solid #D1D1D1;
+    width: 1px;
+}
+
+/* === Right Form Container === */
+
+.right-form-container {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+
+}
+
+.prio-button-headline {
+    font-weight: 400;
+    font-size: 1rem;
+    margin-top: 2rem;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    /* width: 422px; */
+    display: flex;
+    align-items: center;
+}
+
+.button-container-dialog {
+    display: flex;
+    justify-content: space-between;
+    /* width: 422px; */
+    display: flex;
+    align-items: center;
+}
+
+.prio-button-icon {
+    margin-right: 0.5rem;
+    width: 15px;
+}
+
+.prio-button {
+    width: 190px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    cursor: pointer;
+
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13.3px; */
+}
+
+.prio-button-dialog {
+    width: 130px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.prio-button-active {
+    background: #e5e5e5;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+    outline: none;
+}
+
+/* === Submit Container === */
+
+.submit-container {
+    margin-top: 5rem;
+    display: flex;
+    justify-content: flex-end;
+    /* max-width: 1000px; */
+}
+
+.submit-container-dialog {
+    margin-top: 5rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.submit-button {
+    height: 50px;
+    background-color: white;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 0rem 1rem;
+    border: 1px solid #2A3647;
+}
+
+.submit-button-addtask {
+    height: 50px;
+    background-color: white;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 0rem 1rem;
+    border: 1px solid #2A3647;
+}
+
+.create-task-button {
+    background-color: #2A3647;
+    color: white;
+
+    height: 50px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 0rem 1rem;
+    border: 1px solid #2A3647;
+}
+
+.create-task-button-dialog {
+    background-color: #2A3647;
+    color: white;
+
+    height: 50px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 0rem 1rem;
+    border: 1px solid #2A3647;
+}
+
+.submit-button-icon {
+    margin-left: 1rem;
+    width: 15px;
+}
+
+.at-notification-cnt {
+    background-color: #2A3647;
+    color: white;
+    padding: 1rem;
+    border-radius: 12px;
+    position: absolute;
+    /* bottom: 2rem; */
+    width: 278px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 2rem;
+    right: 0;
+    left: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    animation-name: fadeInUp;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* === Edit Task Dialog */
+
+.form-container-edit-task {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.submit-container-edit-task {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+/* === Responsive Design === */
+
+@media (min-width: 2560px) {
+
+    .headline {
+        font-size: 3.5rem;
+    }
+
+    .submit-button {
+        height: 80px;
+        font-size: 1.2rem;
+
+        background-color: white;
+        border: 1px solid #D1D1D1;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-left: 1rem;
+        display: flex;
+        align-items: center;
+        padding: 0rem 1rem;
+        border: 1px solid #2A3647;
+    }
+
+    .create-task-button {
+        background-color: #2A3647;
+        color: white;
+        font-size: 1.2rem;
+        height: 80px;
+    }
+
+    .submit-button-addtask {
+        font-size: 1.2rem;
+        height: 60px;
+    }
+
+    .prio-button {
+        width: 220px;
+        height: 60px;
+        font-size: 1.2rem;
+    }
+
+    .form-container-dialog {
+        margin-top: 3rem;
+    }
+}
+
+@media (max-width:1440px) {
+    .headline {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .button-container {
+        flex-direction: column;
+        align-items: flex-start !important;
+        justify-content: unset !important;
+    }
+
+    .prio-button {
+        margin-bottom: 1rem;
+        width: 100% !important;
+    }
+
+    label {
+        margin-top: 1rem;
+    }
+
+    .add-task-inputfield {
+        height: 35px;
+    }
+
+    .prio-button {
+        height: 35px;
+    }
+
+    .submit-container-edit-task {
+        margin-top: 1rem;
+    }
+
+    .at-notification-cnt {
+        left: 150px;
+    }
+}
+
+@media (max-width: 881px) {
+    .submit-container-dialog {
+        margin-top: 3rem;
+    }
+
+    .button-container-dialog {
+        flex-direction: column;
+        align-items: flex-start !important;
+        justify-content: unset !important;
+    }
+
+    .prio-button-dialog {
+        margin-bottom: 1rem;
+        width: 100% !important;
+    }
+
+    .headline, .headline-dialog {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .at-notification-cnt {
+        bottom: 101px;
+        left: 0;
+    }
+}
+
+@media (max-width: 500px) {
+    hr {
+        display: none;
+    }
+
+    .form-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .add-task-container {
+        /* padding: 2rem 5%; */
+        position: relative;
+        padding: 2rem 5% 107px 5%;
+    }
+
+    .add-task-inputfield {
+        font-size: 0.8rem;
+    }
+
+    .headline {
+        margin-bottom: 0rem;
+    }
+
+    .left-form-container {
+        width: 100%;
+    }
+
+    .right-form-container {
+        width: 100%;
+    }
+
+    label {
+        margin-top: 1rem;
+        font-size: 0.8rem;
+    }
+
+    .button-container {
+        flex-direction: column;
+    }
+
+    .submit-container {
+        margin-top: 1rem;
+    }
+
+    .submit-button {
+        display: none;
+    }
+
+    .create-task-button {
+        position: absolute;
+        top: 2rem;
+        height: 40px;
+    }
+
+    .prio-button-headline {
+        font-size: 0.8rem;
+        margin-top: 1rem;
+    }
+
+    .prio-button {
+        margin-bottom: 1rem;
+    }
+
+    .submit-container-edit-task {
+        margin-top: 5rem;
+    }
+
+    .nav-mobile {
+        z-index: 999;
+    }
+}
+
+@media (max-width: 350px) {
+
+    .submit-container-edit-task {
+        margin-top: 2rem;
+    }
+
+    .prio-button {
+        margin-bottom: 1rem;
+    }
+
+    .create-task-button-dialog {
+        /* height: 35px; */
+    }
+
+    .create-task-button > p {
+        display: none;
+    }
+
+    .ml0 {
+        margin-left: unset;
+    }
+
+    label {
+        margin-top: 1rem;
+    }
+
+    .prio-button-headline {
+        margin-top: 1rem;
+    }
+}
+
+
+@media (max-height: 830px) {
+    .headline {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    label {
+        margin-top: 1rem;
+    }
+
+    .submit-container {
+        margin-top: 2rem;
+    }
+
+}

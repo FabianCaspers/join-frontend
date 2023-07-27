@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="de">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Join - Home</title>
+
+        <link rel="icon" type="image/x-icon" href="../assets/img/logo.png">
+
+        <link rel="stylesheet" type="text/css" href="../css/sidenav.css">
+        <link rel="stylesheet" type="text/css" href="../style.css">
+        <link rel="stylesheet" type="text/css" href="../css/header.css">
+        <link rel="stylesheet" type="text/css" href="../css/home.css">
+        <link rel="stylesheet" type="text/css" href="../css/add_task.css">
+
+        <!-- <script src="../js/mini_backend.js"></script> -->
+        <script src="../smallest_backend/mini_backend.js"></script>
+        <script src="../script.js"></script>
+        <script src="../js/includeHtml.js"></script>
+    
+        <script src="../js/home.js"></script>
+        <script src="../js/addTask.js"></script>
+        <script src="../js/board.js"></script>
+        <script src="../js/editTask.js"></script>
+        <script src="../js/login.js"></script>
+    </head>
+
+    <body onload="initHome()">
+        <nav w3-include-html="../templates/sidenav.html" class="left-main-container"></nav>
+
+        <div class="right-main-container">
+            <header w3-include-html="../templates/header.html"></header>
+
+            <div class="home-container">
+                <div class="home-header">
+                    <h1>Home</h1>
+                    <p>keep track of everything</p>
+                </div>
+
+                <div class="home-body">
+                    <div class="time">
+                        <p class="time-data">
+                            <span id="clock"></span>
+                            <span id="date"></span>
+                        </p>
+                    </div>
+                    <div class="greeting">
+                        <p>
+                            <span id="welcome-text"></span>
+                            <span id="welcome-name"></span>
+                        </p>
+                    </div>
+                    <div class="question">
+                        <p>What's on today?</p>
+                    </div>
+                    <div class="btn-container">
+                        <a href="../html/board.html"><input class="submit-button-home" type="button" value="Check My Board"></a>
+                        <a href="../html/add_task.html"><input class="create-task-button-home" type="button" value="Add a new Task"></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </body>
+
+</html>

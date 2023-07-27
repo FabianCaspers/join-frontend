@@ -1,0 +1,539 @@
+.log-in-container {
+    width: 100vw;
+    height: 100vh;
+    padding: 3rem 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F5F5F5;
+}
+
+.close-icon {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: -40px;
+    right: -40px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.125s ease-in-out;
+}
+
+.close-icon:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: all 0.125s ease-in-out;
+}
+
+.logo {
+    position: absolute;
+    top: 3rem;
+    left: 3rem;
+    width: 80px;
+
+    animation: moveJoinLogo 1s ease-in-out;
+    animation-direction: normal;
+}
+
+@keyframes moveJoinLogo {
+    0% {
+        width: 200px;
+        left: 40%;
+        top: 40vh;
+    }
+
+    50% {
+        width: 200px;
+        left: 40%;
+        top: 40vh;
+    }
+
+    100% {
+        left: 50px;
+        top: 50px;
+    }
+}
+
+.signup-box {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 3rem;
+    right: 5%;
+}
+
+.log-in-box {
+    padding: 2rem;
+    width: 600px;
+    background-color: white;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0px 0px 14px 3px rgb(0 0 0 / 4%);
+    position: relative;
+
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-delay: 0.8s;
+    animation-delay: 0.8s;
+}
+
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.log-in-box>h1 {
+    font-size: 3rem;
+    text-align: center;
+}
+
+hr {
+    width: 100px;
+    height: 4px;
+    background-color: #29ABE2;
+    border: none;
+    margin-top: 1rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-cnt {
+    position: relative;
+}
+
+.login-input {
+    border: 1px solid #D1D1D1;
+    width: 350px;
+    height: 40px;
+    border-radius: 10px;
+    padding: 0rem 3rem 0rem 1rem;
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+    outline: none;
+}
+
+.mail-icon {
+    position: absolute;
+    top: 42px;
+    right: 15px;
+}
+
+.lock-icon {
+    position: absolute;
+    top: 42px;
+    right: 15px;
+}
+
+.sign-up-btn {
+    background-color: #2A3647;
+    color: white;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    padding: 0rem 1rem;
+    border-radius: 10px;
+    margin-left: 2rem;
+    border: 1px solid #2A3647;
+    cursor: pointer;
+}
+
+.account-settings-container {
+    display: flex;
+    margin-top: 2rem;
+}
+
+.remember-cnt {
+    display: flex;
+    margin-right: 2rem;
+}
+
+.checkbox {
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+
+.account-settings-container>p:last-of-type {
+    cursor: pointer;
+    color: #29ABE2;
+}
+
+
+.btn-cnt {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+}
+
+.login-btn {
+    background-color: #2A3647;
+    color: white;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    padding: 0rem 1rem;
+    border-radius: 10px;
+    margin-left: 1rem;
+    border: 1px solid #2A3647;
+    cursor: pointer;
+    width: 120px;
+    justify-content: center;
+}
+
+.guest-login-btn {
+    background-color: white;
+    color: #2A3647;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    padding: 0rem 1rem;
+    border-radius: 10px;
+    margin-left: 1rem;
+    border: 1px solid #2A3647;
+    cursor: pointer;
+    width: 120px;
+    justify-content: center;
+}
+
+.notification-cnt {
+    background-color: #2A3647;
+    color: white;
+    padding: 1rem;
+    border-radius: 12px;
+    position: absolute;
+    bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    animation-name: fadeInUp;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.back-to-login {
+    background-color: #2A3647;
+    color: white;
+    padding: 1rem;
+    border-radius: 12px;
+    position: absolute;
+    bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 10rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 170px;
+    left: 0;
+    right: 0;
+
+    animation-name: fadeIn;
+    animation-delay: 2.5s;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+}
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.wrong-email {
+    border: 2px solid red;
+    animation-name: shake;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.wrong-password {
+    border: 2px solid red;
+    animation-name: shake;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.correct-email {
+    border: 2px solid green;
+}
+
+.correct-password {
+    border: 2px solid green;
+}
+
+.pw-text {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+
+@keyframes shake {
+    0%, 100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    10%, 30%, 50%, 70%, 90% {
+        transform: translate3d(-10px, 0, 0);
+    }
+
+    20%, 40%, 60%, 80% {
+        transform: translate3d(10px, 0, 0);
+    }
+}
+
+@media (min-width: 2560px) {
+    .logo {
+        width: 160px;
+    }
+
+    .sign-up-btn {
+        font-size: 1.5rem;
+    }
+
+    .signup-box>p {
+        font-size: 1.5rem;
+    }
+
+    .log-in-box {
+        width: 830px;
+    }
+
+    .log-in-box>h1 {
+        font-size: 3.5rem;
+    }
+
+    .login-input {
+        height: 60px;
+        font-size: 1.2rem;
+        width: 480px;
+        margin-top: 3rem;
+    }
+
+    .mail-icon {
+        top: 54px;
+    }
+
+    .lock-icon {
+        top: 54px;
+    }
+
+    .account-settings-container {
+        margin-top: 3rem;
+    }
+
+    .account-settings-container>p {
+        font-size: 1.2rem;
+    }
+
+    .login-btn {
+        width: 155px;
+    }
+
+    .login-btn>p {
+        font-size: 1.2rem;
+    }
+
+    .guest-login-btn {
+        width: 155px;
+    }
+
+    .guest-login-btn>p {
+        font-size: 1.2rem;
+    }
+
+    .btn-cnt {
+        margin-top: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .log-in-box {
+        width: 520px;
+    }
+}
+
+@media (max-width: 425px) {
+    /* .log-in-container {
+        animation: bg-intro 2s ease-in-out;
+    }
+
+    @keyframes bg-intro {
+        0% {
+            display: block;
+            opacity: 1;
+            background-color: #2A3647;
+        }
+
+        20% {
+            display: block;
+            opacity: 1;
+            background-color: #2A3647;
+        }
+
+        40% {
+            display: block;
+            opacity: 1;
+            background-color: #2A3647;
+        }
+
+        75% {
+            display: block;
+            opacity: 1;
+        }
+
+        90% {
+            display: block;
+            opacity: 1;
+            
+        }
+
+        100% {
+            display: block;
+            opacity: 1;
+            
+        }
+
+    } */
+
+    .account-settings-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .account-settings-container>p {
+        margin-top: 1rem;
+    }
+
+    .remember-cnt {
+        margin-right: 0;
+    }
+
+    .login-input {
+        width: 285px;
+    }
+
+    .btn-cnt {
+        flex-direction: column;
+        align-items: center
+    }
+
+    .login-btn {
+        margin-left: 0;
+        width: 180px;
+    }
+
+    .guest-login-btn {
+        margin-top: 1rem;
+        margin-left: 0;
+        width: 180px;
+    }
+
+    .logo {
+        width: 60px;
+
+        animation: moveJoinLogo 1s ease-in-out;
+        animation-direction: normal;
+    }
+
+    @keyframes moveJoinLogo {
+        0% {
+            width: 200px;
+            left: 30%;
+            top: 30vh;
+        }
+    
+        50% {
+            width: 200px;
+            left: 30%;
+            top: 30vh;
+        }
+    
+        100% {
+            left: 50px;
+            top: 50px;
+        }
+    }
+
+
+    .log-in-box {
+        width: 350px;
+    }
+
+    .log-in-box>h1 {
+        font-size: 2rem;
+    }
+
+    .signup-box {
+        top: 50rem;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        width: 245px;
+    }
+
+    .close-icon {
+        right: -20px;
+    }
+}
+
+@media (max-width: 375px) {
+    .log-in-box {
+        padding: 1rem;
+    }
+
+    .close-icon {
+        right: -6px;
+    }
+}
+
+@media (max-width: 320px) {
+    .login-input {
+        width: 250px;
+    }
+}

@@ -1,0 +1,71 @@
+<div class="add-task-container">
+
+    <h1 class="headline-dialog">Add Task</h1>
+
+    <form onsubmit="return addTask(event)">
+        <div class="form-container-dialog">
+
+            <div class="left-form-container">
+                <!-- === Title === -->
+                <label for="title">Title</label>
+                <input required id="taskTitle" class="add-task-inputfield" type="text" name="title"
+                    placeholder="Enter a title" />
+
+                <!-- === Description === -->
+                <label for="description">Description</label>
+                <textarea required name="description" id="taskDescription" cols="30" rows="10"
+                    placeholder="Enter a description"></textarea>
+
+                <!-- === Category === -->
+                <label for="category">Category</label>
+                <select required class="add-task-inputfield" name="category" id="taskCategory">
+                    <option value="" disabled selected hidden>Select task category</option>
+                    <option value="Software-Development">Software Development</option>
+                    <option value="Design">UX/UI - Design</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Sales">Sales</option>
+                </select>
+
+                <!-- === Assigned to === -->
+                <label for="assigned">Assigned to</label>
+                <select required class="add-task-inputfield" name="assigned" id="taskAssignedTo">
+                    <option value="" disabled selected hidden>Select contacts to assign</option>
+                    <option value="Fabian Caspers">Fabian Caspers</option>
+                </select>
+            </div>
+
+            <hr>
+
+            <div class="right-form-container">
+                <!-- === Due date === -->
+                <label for="dueDate">Due date</label>
+                <input required class="add-task-inputfield" type="date" id="taskDueDate" name="dueDate">
+
+                <!-- === Prio Buttons === -->
+                <div class="prio-button-container">
+                    <h3 class="prio-button-headline">Prio</h3>
+                    <div class="button-container-dialog">
+                        <button type="button" onclick="activateUrgentButton()" id="urgent-button" class="prio-button-dialog" value="urgent"><img
+                                class="prio-button-icon" src="../assets/icons/urgent.png" alt="">
+                            Urgent</button>
+                        <button type="button" onclick="activateMediumButton()" id="medium-button" class="prio-button-dialog" value="medium"><img
+                                class="prio-button-icon" src="../assets/icons/medium.png" alt="">
+                            Medium</button>
+                        <button type="button" onclick="activateLowButton()" id="low-button" class="prio-button-dialog" value="low"><img
+                                class="prio-button-icon" src="../assets/icons/low.png" alt=""> Low</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="submit-container-dialog">
+            <!-- === Clear & Create Task Buttons === -->
+            <button onclick="clearAddTaskForm()" type="button" class="submit-button-addtask">Clear <img class="submit-button-icon" src="../assets/icons/cancel.png"
+                    alt=""></button>
+            <button type="submit" class="submit-button-addtask create-task-button"> Create Task <img
+                    class="submit-button-icon" src="../assets/icons/done.png" alt=""></button>
+        </div>
+    </form>
+    
+
+</div>

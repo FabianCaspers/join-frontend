@@ -1,0 +1,150 @@
+.header-container {
+    background-color: #2A3647;
+    height: 75px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    border-left: 2px solid whitesmoke;
+    position: relative;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+}
+
+.icon-container > a {
+    display: flex;
+    align-items: center;
+}
+
+.headline-container > p {
+    color: whitesmoke;
+}
+
+.questionmark-icon {
+    cursor: pointer;
+}
+
+.profile {
+    border-radius: 100%;
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    object-position: top;
+    border: 2px solid #2A3647;
+    margin-left: 2rem;
+    cursor: pointer;
+}
+
+.logout-dialog {
+    background-color: #2A3647;
+    color: white;
+    padding: 0.5rem;
+    position: absolute;
+    right: 100px;
+    bottom: -50px;
+    display: flex;
+    flex-direction: column;
+    width: 115px;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    cursor: pointer;
+}
+
+.logout-dialog > a {
+    text-decoration: none;
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.5rem;
+}
+
+@media (min-width: 2560px) {
+    .header-container {
+        padding: 0 5%;
+        height: 115px;
+    }
+
+    .profile {
+        width: 65px;
+        height: 65px;
+    }
+
+    .headline-container > p {
+        font-size: 1.5rem;
+    }
+
+    .questionmark-icon {
+        width: 55px;
+    }
+
+    .logout-dialog > a {
+        font-size: 1.5rem;
+    }
+
+    .logout-dialog {
+        right: 135px;
+        bottom: -70px;
+        width: 150px;
+    }
+}
+
+@media (max-width:1440px) {
+    .logout-dialog {
+        right: 85px;
+    }
+}
+
+@media (max-width:1024px) {
+    .logout-dialog {
+        right: 65px;
+    }
+}
+
+@media (max-width: 768px) {
+    .logout-dialog {
+        right: 50px;
+    }
+}
+
+@media (max-width:600px) {
+    .logout-dialog {
+        right: 40px;
+        bottom: -116px;
+    }
+
+    .header-container {
+        border-left: unset;
+    }
+}
+
+@media (max-width: 425px) {
+
+}
+
+@media (max-width: 320px) {
+    .logout-dialog {
+        right: 30px;
+    }
+}
+
+/* 426 PX */
+@media (min-width: 601px) {
+    .logo-container {
+        display: none;
+    }
+
+    .help, .legal-notice {
+        display: none;
+    }
+}
+
+/* 425 PX */
+@media (max-width: 600px) {
+    .logo-container > img {
+        width: 35px;
+    }
+}

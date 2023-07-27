@@ -1,0 +1,333 @@
+.home-container {
+    padding: 3rem 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.home-header {
+    display: flex;
+    align-items: center;
+}
+
+.home-header>h1 {
+    font-size: 3rem;
+    border-right: 1px solid black;
+    padding-right: 2rem;
+}
+
+.home-header>p {
+    padding-left: 2rem;
+    font-size: 1.5rem;
+}
+
+.home-body {
+    margin-top: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.03);
+    padding: 2rem 0rem 3rem 0rem;
+    border-radius: 12px;
+}
+
+.time>p {
+    font-size: 6rem;
+    font-weight: 700;
+    color: #091931;
+    
+    animation-delay: 0.5s;
+    animation-name: fadeIn;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+}
+
+.time-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 24px;
+    font-size: 45px !important;
+}
+
+
+.greeting>p {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #091931;
+    text-align: center;
+
+    animation-name: fadeIn;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.question {
+    margin-top: 4rem;
+    font-size: 3rem;
+    color: #29ABE2;
+
+    animation-delay: 0.5s;
+    animation-name: fadeIn;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+}
+
+.btn-container {
+    display: flex;
+    margin-top: 2rem;
+
+    animation-delay: 0.5s;
+    animation-name: fadeIn;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+}
+
+.btn-container>a {
+    text-decoration: none;
+}
+
+.submit-button-home {
+    height: 50px;
+    background-color: white;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 0rem 1rem;
+    border: 1px solid #2A3647;
+}
+
+.create-task-button-home {
+    background-color: #2A3647;
+    color: white;
+
+    height: 50px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 0rem 1rem;
+    border: 1px solid #2A3647;
+}
+
+/* === Responsive Design === */
+
+@media (min-width: 2560px) {
+
+    .home-header>h1 {
+        font-size: 3.5rem;
+    }
+
+    .home-header>p {
+        font-size: 2rem;
+    }
+
+    .time>p {
+        font-size: 8rem;
+    }
+
+    .greeting>p {
+        font-size: 4rem;
+        margin-top: 2rem;
+    }
+
+    .question {
+        font-size: 4rem;
+        margin-top: 2rem;
+    }
+
+    .home-body {
+        margin-top: 15rem;
+    }
+
+    .btn-container {
+        margin-top: 4rem;
+    }
+
+    .btn-container>a {
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
+
+    .submit-button-home {
+        height: 100px;
+        font-size: 1.5rem;
+    }
+
+    .create-task-button-home {
+        height: 100px;
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 1440px) {
+    .home-header>h1 {
+        font-size: 2rem;
+    }
+
+    .home-header>p {
+        font-size: 1rem;
+    }
+
+}
+
+@media (max-width: 1024px) {
+    /* .home-header>h1 {
+        font-size: 2rem;
+    }
+
+    .home-header>p {
+        font-size: 1.5rem;
+    } */
+
+    .time>p {
+        font-size: 5rem;
+    }
+
+    .greeting>p {
+        font-size: 2rem;
+    }
+
+    .question {
+        font-size: 2rem;
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-body {
+        margin-top: 10rem;
+    }
+
+    .home-header>h1 {
+        font-size: 1.5rem;
+    }
+
+    .home-header>p {
+        font-size: 1rem;
+    }
+
+    .time>p {
+        font-size: 4rem;
+    }
+
+    .greeting>p {
+        font-size: 1.5rem;
+    }
+
+    .question {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .home-body {
+        margin-top: 8rem;
+    }
+}
+
+/* 425 Px */
+@media (max-width: 425px) {
+    .home-container {
+        padding: 2rem 5%;
+    }
+
+    .greeting>p {
+        font-size: 1.4rem;
+    }
+
+    .btn-container {
+        margin-top: 5rem;
+    }
+}
+
+/* 375 px */
+
+@media (max-width: 376px) {
+    .home-header>p {
+        font-size: 0.8rem;
+        padding-left: 1rem;
+    }
+
+    .home-header>h1 {
+        padding-right: 1rem;
+    }
+
+    .time>p {
+        font-size: 3rem;
+    }
+
+    .greeting>p {
+        font-size: 1rem;
+    }
+
+    .btn-container {
+        flex-direction: column;
+    }
+
+    .create-task-button-home {
+        margin-top: 1rem;
+        height: 40px;
+        margin-left: unset;
+    }
+
+    .submit-button-home {
+        height: 40px;
+        margin-left: unset;
+    }
+}
+
+@media (max-height: 835px) {
+    .home-body {
+        margin-top: 3rem;
+    }
+}
+
+@media (max-height: 800px) {
+    .home-header > h1 {
+        font-size: 2rem;
+    }
+    .home-header > p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-height: 765px) {
+    .home-body {
+        margin-top: 2rem;
+    }
+
+    .home-container {
+        padding: 2rem 5%;
+    }
+
+    .time > p {
+        font-size: 5rem;
+    }
+}
+
+@media (max-height: 720px) {
+    .time > p {
+        font-size: 4rem;
+    }
+
+    .question {
+        margin-top: 1rem;
+    }
+}

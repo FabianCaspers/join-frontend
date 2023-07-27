@@ -1,0 +1,41 @@
+.help-container {
+    padding: 3rem 5%;
+    height: 92vh;
+    overflow-y: scroll;
+}
+
+.headline {
+    font-size: 3rem;
+}
+
+.question-cnt {
+    margin-top: 3rem;
+}
+
+.number-cnt {
+    display: flex;
+    margin-top: 1rem;
+}
+
+.number {
+    margin-right: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.number > p {
+    font-size: 1.5rem;
+}
+
+@media (max-width: 1440px) {
+    .headline {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width:600px) {
+    .help-container {
+        height: 82vh;
+    }
+}

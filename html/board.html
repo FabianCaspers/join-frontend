@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Join - Board</title>
+
+        <link rel="icon" type="image/x-icon" href="../assets/img/logo.png">
+
+        <link rel="stylesheet" type="text/css" href="../style.css">
+        <link rel="stylesheet" type="text/css" href="../css/board.css">
+        <link rel="stylesheet" type="text/css" href="../css/add_task.css">
+        <link rel="stylesheet" type="text/css" href="../css/header.css">
+        <link rel="stylesheet" type="text/css" href="../css/sidenav.css">
+
+        <!-- <script src="../js/mini_backend.js"></script> -->
+        <script src="../smallest_backend/mini_backend.js"></script>
+        <script src="../script.js"></script>
+        <script src="../js/includeHtml.js"></script>
+        
+        <script src="../js/addTask.js"></script>
+        <script src="../js/board.js"></script>
+        <script src="../js/editTask.js"></script>
+    </head>
+
+    <body onload="initBoard()">
+        <nav w3-include-html="../templates/sidenav.html" class="left-main-container"></nav>
+
+        <div class="right-main-container">
+            <header w3-include-html="../templates/header.html"></header>
+
+            <div class="board-container">
+
+                <div class="headline-container">
+                    <div class="board-header">
+                        <h1>Board</h1>
+                        <p>everything at a glance!</p>
+                    </div>
+
+                    <div class="headline-right">
+                        <input onkeyup="searchTask()" id="search" class="task-search" type="text" placeholder="Find Task">
+                        <button onclick="openAddTaskDialog()" class="add-task-button">Add Task <img class="add-icon" src="../assets/icons/add_icon.png" alt=""></button>
+                        
+                        <a href="/html/add_task.html"><button class="add-task-button-mobile"><img class="add-icon" src="../assets/icons/add_icon.png" alt=""></button></a>
+                    </div>
+                </div>
+            
+                <div class="task-status-container">
+                    <div class="task-status-row">
+                        <div class="task-status-header">
+                            <p>To do</p>
+                            <!-- <img src="../assets/icons/add_button_circle.png" alt=""> -->
+                        </div>
+                        <div id="todo-container" class="task-container" ondrop="moveTo('todo')" ondragover="allowDrop(event)">
+            
+                        </div>
+                    </div>
+            
+                    <div class="task-status-row">
+                        <div class="task-status-header">
+                            <p>In progress</p>
+                            <!-- <img src="../assets/icons/add_button_circle.png" alt=""> -->
+                        </div>
+                        <div id="in-progress-container" class="task-container" ondrop="moveTo('in-progress')" ondragover="allowDrop(event)">
+            
+                        </div>
+                    </div>
+            
+                    <div class="task-status-row">
+                        <div class="task-status-header">
+                            <p>Awaiting Feedback</p>
+                            <!-- <img src="../assets/icons/add_button_circle.png" alt=""> -->
+                        </div>
+                        <div id="awaiting-feedback-container" class="task-container" ondrop="moveTo('awaiting-feedback')" ondragover="allowDrop(event)">
+                            
+                        </div>
+                    </div>
+            
+                    <div class="task-status-row">
+                        <div class="task-status-header">
+                            <p>Done</p>
+                            <!-- <img src="../assets/icons/add_button_circle.png" alt=""> -->
+                        </div>
+                        <div id="done-container" class="task-container" ondrop="moveTo('done')" ondragover="allowDrop(event)">
+                            
+                        </div>
+                    </div>
+            
+                </div>
+            
+                <div id="add-task-dialog" class="add-task-dialog-bg d-none">
+                    <div class="add-task-dialog">
+                        <img onclick="closeAddTaskDialog()" class="close-icon" src="../assets/icons/close_icon.png" alt="">
+                        <div class="add-task-include">
+                            <div w3-include-html="../templates/add_task_template.html"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="detail-task-dialog-bg" class="detail-task-dialog-bg d-none">
+                    <div id="detail-task-dialog" class="detail-task-dialog">
+
+                    </div>
+                </div>
+            
+            
+            </div>
+
+        </div>
+    </body>
+
+</html>

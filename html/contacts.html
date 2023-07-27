@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join - Contacts</title>
+
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo.png">
+
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="../css/contacts.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../css/home.css"> -->
+    <link rel="stylesheet" type="text/css" href="../css/header.css">
+    <link rel="stylesheet" type="text/css" href="../css/sidenav.css">
+
+    <!-- <script src="../js/mini_backend.js"></script> -->
+    <script src="../smallest_backend/mini_backend.js"></script>
+    <script src="../script.js"></script>
+    <script src="../js/includeHtml.js"></script>
+
+    <script src="../js/contacts.js"></script>
+    <script src="../js/addTask.js"></script>
+    <script src="../js/board.js"></script>
+</head>
+
+<body onload="initContacts()">
+    <nav w3-include-html="../templates/sidenav.html" class="left-main-container"></nav>
+
+    <div class="right-main-container">
+        <header w3-include-html="../templates/header.html"></header>
+
+        <div class="add-contact-btn-mobile-container">
+            <button type="button" onclick="openNewContactDialog()" class="add-contact-button-mobile">Add a new Contact <img
+                class="add-contact-icon" src="../assets/icons/addContact.png" alt=""></button>
+        </div>
+
+        <div class="contacts-container">
+            <div id="contacts-nav-container" class="contacts-nav"></div>
+
+            <div id="contact-details-mobile" class="contact-details-mobile d-none"></div>
+
+            <div class="main-container">
+                <div class="contacts-headline">
+                    <h1 class="headline">Contacts</h1>
+                    <p>Better with a team</p>
+                </div>
+                <div id="contact-detail" class="contact-detail">
+
+                </div>
+                <div class="button-container">
+                    <div id="delete-button-container" class="delete-button-container"></div>
+                    <button type="button" onclick="openNewContactDialog()" class="add-contact-button">Add a new Contact
+                        <img class="add-contact-icon" src="../assets/icons/addContact.png" alt=""></button>
+                </div>
+            </div>
+
+            <!-- === Add Contact Dialog === -->
+            <div id="contact-dialog" class="new-contact-dialog-bg d-none">
+                <div class="new-contact-dialog">
+                    <div class="headline-container-contact">
+                        <img class="logo" src="../assets/img/logo.png" alt="">
+                        <h1>Add Contact</h1>
+                        <p>Tasks are better with a team!</p>
+                    </div>
+                    <div class="form-container">
+                        <div class="close-container">
+                            <img onclick="closeNewContactDialog()" class="close-icon-dialog"
+                                src="../assets/icons/close_icon.png" alt="">
+                        </div>
+                        <div class="first-row">
+                            <div class="user-pic-container">
+                                <img src="../assets/icons/user.png" alt="">
+                            </div>
+                            <form onsubmit="return addNewContact(event)">
+                                <!-- === Name === -->
+                                <div class="input-cnt">
+                                    <input id="contact-name" class="contact-input" required name="name" type="text"
+                                        placeholder="Name">
+                                    <img class="input-icons" src="../assets/icons/name-icon.png" alt="">
+                                </div>
+                                <!-- === Email ===-->
+                                <div class="input-cnt">
+                                    <input id="contact-email" class="contact-input" required name="email" type="email"
+                                        placeholder="Email">
+                                    <img class="input-icons" src="../assets/icons/mail-icon.png" alt="">
+                                </div>
+                                <!-- === Phone ===-->
+                                <div class="input-cnt">
+                                    <input id="contact-phone" class="contact-input" required name="phone" type="tel"
+                                        placeholder="Phone">
+                                    <img class="input-icons" src="../assets/icons/phone-icon.png" alt="">
+                                </div>
+                                <!-- === Company ===-->
+                                <div class="input-cnt">
+                                    <input id="contact-company" class="contact-input" name="company" type="text"
+                                        placeholder="Company">
+                                    <img class="input-icons company-icon" src="../assets/icons/company.png" alt="">
+                                </div>
+                                <div class="button-contact-container">
+                                    <input onclick="closeNewContactDialog()" type="button" class="delete-contact-button"
+                                        type="button" value="Cancel"></a>
+                                    <input type="submit" class="add-contact-button" type="button"
+                                        value="create Contact"></a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
