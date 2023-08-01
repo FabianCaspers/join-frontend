@@ -91,7 +91,7 @@ function signUpNotification() {
 }
 
 
-async function logIn() {
+/* async function logIn() {
     let email = document.getElementById('login-mail');
     let password = document.getElementById('login-password');
     let user = allUsers.find(u => u.email == email.value && u.password == password.value);
@@ -113,7 +113,7 @@ async function logIn() {
         password.classList.remove('correct-password')
     }
 
-}
+} */
 
 
 async function guestLogin() {
@@ -208,7 +208,7 @@ async function signUp(e) {
     let password = document.getElementById('signup-password');
 
     let user = {
-        'name': name.value,
+        'username': name.value,
         'email': email.value,
         'password': password.value
     };
@@ -218,7 +218,6 @@ async function signUp(e) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRFToken': getCSRFToken(),
             },
             body: JSON.stringify(user),
         });
@@ -250,11 +249,10 @@ async function logIn() {
 
         
         try {
-            const response = await fetch('http://127.0.0.1:8000/', {
+            const response = await fetch('http://127.0.0.1:8000/login/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRFToken': getCSRFToken(),
                 },
                 body: JSON.stringify({ 'email': email.value, 'password': password.value }),
             });
@@ -265,12 +263,12 @@ async function logIn() {
                 password.classList.remove('wrong-password');
                 email.classList.add('correct-email');
                 password.classList.add('correct-password');
-                // window.location.href = '...';
+                window.location.href = 'home.html';
             } else {
                 // Fehlerbehandlung, falls der Login fehlschlägt
             }
         } catch (error) {
-            // Fehlerbehandlung, falls es zu einem unerwarteten Fehler kommt
+            console.error('An error occurred:', error);
         }
     } else {
         email.classList.add('wrong-email');
