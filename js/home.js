@@ -1,10 +1,10 @@
-async function initHome() {
+/* async function initHome() {
     await includeHTML();
-    setURL("https://darkjoin.fabiancaspers.com/smallest_backend");
+    setURL("http://127.0.0.1:8000/");
     await loadCurrentUser();
     greetingUsers();
     activeHomeNavLink();
-}
+} */
 
 
 function activeHomeNavLink() {
@@ -13,7 +13,7 @@ function activeHomeNavLink() {
 }
 
 
-function greetingUsers() {
+/* function greetingUsers() {
     let myDate = new Date()
     let hours = myDate.getHours();
     let greetingMessage;
@@ -31,7 +31,7 @@ function greetingUsers() {
 
     setCurrentTime();
     setCurrentDate();
-}
+} */
 
 
 function setCurrentDate() {
@@ -63,3 +63,68 @@ function checkTime(i) {
     if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
     return i;
 }
+
+
+
+
+/* Django Backend */
+
+async function initHome() {
+    await includeHTML();
+    setURL("http://127.0.0.1:8000/");
+
+    const currentUserData = await getCurrentUser();
+    if (currentUserData) {
+        greetingUsers(currentUserData.username);
+    } else {
+        
+    }
+
+    activeHomeNavLink();
+    setCurrentDate();
+    setCurrentTime();
+    greetingUsers();
+}
+
+
+
+async function getCurrentUser() {
+    try {
+        const response = await fetch('http://127.0.0.1:8000/current_user/');
+        console.log('Response:', response); 
+        if (response.ok) {
+            const data = await response.json();
+            console.log('Data:', data);
+            return data;
+        } else {
+            console.error("Failed to fetch current user.");
+        }
+    } catch (error) {
+        console.error("Error fetching current user:", error);
+    }
+    return null;
+}
+
+
+
+
+function greetingUsers(username) {
+    let myDate = new Date();
+    let hours = myDate.getHours();
+    let greetingMessage;
+
+    if (hours < 12) {
+        greetingMessage = 'Good morning,';
+    } else if (hours >= 12 && hours <= 17) {
+        greetingMessage = 'Good afternoon,';
+    } else if (hours >= 17 && hours <= 24) {
+        greetingMessage = 'Good evening,';
+    }
+
+    document.getElementById('welcome-text').innerHTML = greetingMessage;
+    document.getElementById('welcome-name').innerHTML = username;
+
+    setCurrentTime();
+    setCurrentDate();
+}
+
