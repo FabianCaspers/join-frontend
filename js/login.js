@@ -1,6 +1,6 @@
 async function initLogin() {
     setURL("http://127.0.0.1:8000/");
-    await loadAllUsers();
+
 }
 
 
@@ -123,16 +123,16 @@ async function guestLogin() {
 }
 
 
-// function checkHref() {
-//     if (window.location.href.indexOf("caspers") > -1) {
-//         // The URL contains the string 'fabian-caspers'(DA-Server)
-//         // window.location.href = '../Join-Javascript/html/home.html';
-//         window.location.href = '../html/home.html';
-//       } else {
-//         // The URL do not contain the string 'fabian-caspers' (Lokal)
-//         // window.location.href = '../html/home.html';
-//       }
-// }
+ function checkHref() {
+     if (window.location.href.indexOf("caspers") > -1) {
+         // The URL contains the string 'fabian-caspers'(DA-Server)
+         // window.location.href = '../Join-Javascript/html/home.html';
+         window.location.href = '../html/home.html';
+       } else {
+         // The URL do not contain the string 'fabian-caspers' (Lokal)
+         // window.location.href = '../html/home.html';
+       }
+ }
 
 
 function openPwResetDialog() {
@@ -232,7 +232,7 @@ async function signUp(e) {
             // Fehlerbehandlung, falls die Registrierung fehlschlägt
         }
     } catch (error) {
-        // Fehlerbehandlung, falls es zu einem unerwarteten Fehler kommt
+        console.error('Fehler bei der Anfrage:', error);
     }
 
     return false;
@@ -242,10 +242,10 @@ async function signUp(e) {
 async function logIn() {
     let email = document.getElementById('login-mail');
     let password = document.getElementById('login-password');
-    let user = allUsers.find(u => u.email == email.value && u.password == password.value);
+/*     let user = allUsers.find(u => u.email == email.value && u.password == password.value);
 
     if (user) {
-        currentUser = user.name;
+        currentUser = user.name; */
 
         
         try {
@@ -258,25 +258,27 @@ async function logIn() {
             });
 
             if (response.ok) {
-                await saveCurrentUser();
+/*                 await saveCurrentUser(); */
                 email.classList.remove('wrong-email');
                 password.classList.remove('wrong-password');
                 email.classList.add('correct-email');
                 password.classList.add('correct-password');
-                window.location.href = 'home.html';
+                window.location.href = '/html/home.html';
+
+
             } else {
                 // Fehlerbehandlung, falls der Login fehlschlägt
             }
         } catch (error) {
             console.error('An error occurred:', error);
         }
-    } else {
+    }/*  else {
         email.classList.add('wrong-email');
         password.classList.add('wrong-password');
         email.classList.remove('correct-email');
         password.classList.remove('correct-password');
-    }
-}
+    } */
+
 
 // Funktion zum Abrufen des CSRF-Tokens
 function getCSRFToken() {
