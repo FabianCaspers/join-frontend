@@ -222,6 +222,7 @@ async function signUp(e) {
             body: JSON.stringify(user),
         });
 
+
         if (response.ok) {
             name.value = '';
             email.value = '';
@@ -246,8 +247,6 @@ async function logIn() {
 
     if (user) {
         currentUser = user.name; */
-
-        
         try {
             const response = await fetch('http://127.0.0.1:8000/login/', {
                 method: 'POST',
@@ -257,15 +256,15 @@ async function logIn() {
                 body: JSON.stringify({ 'email': email.value, 'password': password.value }),
             });
 
+            let json = await response.json();
+            localStorage.setItem('token', json.token);
+
             if (response.ok) {
-/*                 await saveCurrentUser(); */
                 email.classList.remove('wrong-email');
                 password.classList.remove('wrong-password');
                 email.classList.add('correct-email');
                 password.classList.add('correct-password');
                 window.location.href = '/html/home.html';
-
-
             } else {
                 // Fehlerbehandlung, falls der Login fehlschlägt
             }

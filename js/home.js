@@ -72,6 +72,7 @@ function checkTime(i) {
 async function initHome() {
     await includeHTML();
     setURL("http://127.0.0.1:8000/");
+    await greetingUsers();
 
     const currentUserData = await getCurrentUser();
     if (currentUserData) {
@@ -79,7 +80,7 @@ async function initHome() {
     } else {
         
     }
-
+    
     activeHomeNavLink();
     setCurrentDate();
     setCurrentTime();
@@ -90,25 +91,25 @@ async function initHome() {
 
 async function getCurrentUser() {
     try {
-        const response = await fetch('http://127.0.0.1:8000/current_user/');
-        console.log('Response:', response); 
-        if (response.ok) {
-            const data = await response.json();
-            console.log('Data:', data);
-            return data;
-        } else {
-            console.error("Failed to fetch current user.");
+        const response = await fetch("http://127.0.0.1:8000/current_user/");
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch current user.");
         }
+
+        const userData = await response.json();
+        return userData;
     } catch (error) {
-        console.error("Error fetching current user:", error);
+        console.error("Error:", error);
+        return null;
     }
-    return null;
 }
 
 
 
 
-function greetingUsers(username) {
+
+async function greetingUsers(username) {
     let myDate = new Date();
     let hours = myDate.getHours();
     let greetingMessage;
@@ -121,8 +122,17 @@ function greetingUsers(username) {
         greetingMessage = 'Good evening,';
     }
 
+    const user = await getCurrentUser();
+
+    if (user && user.username) {
+        document.getElementById('welcome-name').innerHTML = user.username;
+    } else {
+        
+        document.getElementById('welcome-name').innerHTML = 'Guest';
+    }
+
     document.getElementById('welcome-text').innerHTML = greetingMessage;
-    document.getElementById('welcome-name').innerHTML = username;
+/*     document.getElementById('welcome-name').innerHTML = username; */
 
     setCurrentTime();
     setCurrentDate();
