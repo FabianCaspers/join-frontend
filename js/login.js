@@ -123,16 +123,16 @@ async function guestLogin() {
 }
 
 
- function checkHref() {
-     if (window.location.href.indexOf("caspers") > -1) {
-         // The URL contains the string 'fabian-caspers'(DA-Server)
-         // window.location.href = '../Join-Javascript/html/home.html';
-         window.location.href = '../html/home.html';
-       } else {
-         // The URL do not contain the string 'fabian-caspers' (Lokal)
-         // window.location.href = '../html/home.html';
-       }
- }
+function checkHref() {
+    if (window.location.href.indexOf("caspers") > -1) {
+        // The URL contains the string 'fabian-caspers'(DA-Server)
+        // window.location.href = '../Join-Javascript/html/home.html';
+        window.location.href = '../html/home.html';
+    } else {
+        // The URL do not contain the string 'fabian-caspers' (Lokal)
+        // window.location.href = '../html/home.html';
+    }
+}
 
 
 function openPwResetDialog() {
@@ -243,35 +243,37 @@ async function signUp(e) {
 async function logIn() {
     let email = document.getElementById('login-mail');
     let password = document.getElementById('login-password');
-/*     let user = allUsers.find(u => u.email == email.value && u.password == password.value);
+    /*     let user = allUsers.find(u => u.email == email.value && u.password == password.value);
+    
+        if (user) {
+            currentUser = user.name; */
+    try {
+        const response = await fetch('http://127.0.0.1:8000/login/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 'email': email.value, 'password': password.value }),
+        });
 
-    if (user) {
-        currentUser = user.name; */
-        try {
-            const response = await fetch('http://127.0.0.1:8000/login/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ 'email': email.value, 'password': password.value }),
-            });
+        let json = await response.json();
+        localStorage.setItem('token', json.token);
 
-            let json = await response.json();
+        if (response.ok) {
             localStorage.setItem('token', json.token);
-
-            if (response.ok) {
-                email.classList.remove('wrong-email');
-                password.classList.remove('wrong-password');
-                email.classList.add('correct-email');
-                password.classList.add('correct-password');
-                window.location.href = '/html/home.html';
-            } else {
-                // Fehlerbehandlung, falls der Login fehlschlägt
-            }
-        } catch (error) {
-            console.error('An error occurred:', error);
+            localStorage.setItem('username', json.username);
+            email.classList.remove('wrong-email');
+            password.classList.remove('wrong-password');
+            email.classList.add('correct-email');
+            password.classList.add('correct-password');
+            window.location.href = '/html/home.html';
+        } else {
+            // Fehlerbehandlung, falls der Login fehlschlägt
         }
-    }/*  else {
+    } catch (error) {
+        console.error('An error occurred:', error);
+    }
+}/*  else {
         email.classList.add('wrong-email');
         password.classList.add('wrong-password');
         email.classList.remove('correct-email');

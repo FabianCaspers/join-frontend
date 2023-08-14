@@ -72,26 +72,25 @@ function checkTime(i) {
 async function initHome() {
     await includeHTML();
     setURL("http://127.0.0.1:8000/");
-    await greetingUsers();
 
-    const currentUserData = await getCurrentUser();
-    if (currentUserData) {
-        greetingUsers(currentUserData.username);
+    const usernameFromLocalStorage = localStorage.getItem('username');
+    if (usernameFromLocalStorage) {
+        greetingUsers(usernameFromLocalStorage);
     } else {
-        
+
     }
-    
+
     activeHomeNavLink();
     setCurrentDate();
     setCurrentTime();
-    greetingUsers();
 }
 
 
 
-async function getCurrentUser() {
+
+/* async function getCurrentUser() {
     try {
-        const response = await fetch("http://127.0.0.1:8000/current_user/");
+        const response = await fetch("http://127.0.0.1:8000/");
 
         if (!response.ok) {
             throw new Error("Failed to fetch current user.");
@@ -103,13 +102,13 @@ async function getCurrentUser() {
         console.error("Error:", error);
         return null;
     }
-}
+} */
 
 
 
 
 
-async function greetingUsers(username) {
+function greetingUsers() {
     let myDate = new Date();
     let hours = myDate.getHours();
     let greetingMessage;
@@ -122,19 +121,18 @@ async function greetingUsers(username) {
         greetingMessage = 'Good evening,';
     }
 
-    const user = await getCurrentUser();
+    const usernameFromLocalStorage = localStorage.getItem('username');
 
-    if (user && user.username) {
-        document.getElementById('welcome-name').innerHTML = user.username;
+    if (usernameFromLocalStorage) {
+        document.getElementById('welcome-name').innerHTML = usernameFromLocalStorage;
     } else {
-        
         document.getElementById('welcome-name').innerHTML = 'Guest';
     }
 
     document.getElementById('welcome-text').innerHTML = greetingMessage;
-/*     document.getElementById('welcome-name').innerHTML = username; */
 
     setCurrentTime();
     setCurrentDate();
 }
+
 
