@@ -1,9 +1,9 @@
-async function initAddTask() {
+/* async function initAddTask() {
     await includeHTML();
-    setURL("https://darkjoin.fabiancaspers.com/smallest_backend");
+    setURL("http://127.0.0.1:8000/add_task/");
     await loadAllTasks();
     activeAddTaskNavLink();
-}
+} */
 
 
 let allTasks = [];
@@ -32,11 +32,13 @@ async function addTask(e) {
         'assigned': taskAssignedTo.value,
         'dueDate': taskDueDate.value,
         'prio': currentTaskPrio,
-        'id': new Date().getTime(),
+        /*         'id': new Date().getTime(), */
         'status': 'todo',
     };
 
-    allTasks.push(task);
+    const savedTask = await saveAllTasks(task);
+    allTasks.push(savedTask);
+
     await saveAllTasks();
     clearAddTaskForm();
     addTaskNotification();
@@ -44,15 +46,15 @@ async function addTask(e) {
 };
 
 
-async function saveAllTasks() {
+/* async function saveAllTasks() {
     await backend.setItem('allTasks', JSON.stringify(allTasks));
-}
+} */
 
 
-async function loadAllTasks() {
+/* async function loadAllTasks() {
     await downloadFromServer();
     allTasks = JSON.parse(backend.getItem('allTasks')) || [];
-}
+} */
 
 
 function activateUrgentButton() {
@@ -174,3 +176,42 @@ function addTaskNotification() {
         window.location.href = '../html/board.html';
     }
 }
+
+
+
+/* Django Backend */
+
+
+async function initAddTask() {
+    await includeHTML();
+    setURL("http://127.0.0.1:8000/add_task/");
+    await loadAllTasks();
+    activeAddTaskNavLink();
+}
+
+async function loadAllTasks() {
+    const response = await fetch("http://127.0.0.1:8000/add_task/");
+    allTasks = await response.json();
+}
+
+async function saveAllTasks(task) {
+    const response = await fetch("http://127.0.0.1:8000/add_task/", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(task),
+    });
+    const data = await response.json();
+if (response.status === 400) {
+    console.error("Server error:", data);
+    console.log(taskTitle.value, taskDescription.value, taskCategory.value, taskAssignedTo.value, taskDueDate.value, currentTaskPrio);
+    console.log("Sending task:", task);
+
+
+}
+
+    return data;
+}
+
+

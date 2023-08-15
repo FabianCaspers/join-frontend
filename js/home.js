@@ -1,49 +1,25 @@
-/* async function initHome() {
+/* Django Backend */
+
+async function initHome() {
     await includeHTML();
     setURL("http://127.0.0.1:8000/");
-    await loadCurrentUser();
-    greetingUsers();
-    activeHomeNavLink();
-} */
 
+    const usernameFromLocalStorage = localStorage.getItem('username');
+    if (usernameFromLocalStorage) {
+        greetingUsers(usernameFromLocalStorage);
+    } else {
+
+    }
+
+    activeHomeNavLink();
+    setCurrentDate();
+    setCurrentTime();
+}
 
 function activeHomeNavLink() {
     document.getElementById('home-link').classList.add('active-link')
     document.getElementById('home-link-mobile').classList.add('active-link')
 }
-
-
-/* function greetingUsers() {
-    let myDate = new Date()
-    let hours = myDate.getHours();
-    let greetingMessage;
-
-    if (hours < 12) {
-        greetingMessage = 'Good morning,';
-    } else if (hours >= 12 && hours <= 17) {
-        greetingMessage = 'Good afternoon,';
-    } else if (hours >= 17 && hours <= 24) {
-        greetingMessage = 'Good evening,';
-    }
-
-    document.getElementById('welcome-text').innerHTML = greetingMessage;
-    document.getElementById('welcome-name').innerHTML = currentUser.split(' ')[0];
-
-    setCurrentTime();
-    setCurrentDate();
-} */
-
-
-function setCurrentDate() {
-    let currentDate = new Date().toLocaleString("default", {
-        "year": "numeric",
-        "month": "long",
-        "day": "numeric",
-    });
-
-    document.getElementById('date').innerHTML = currentDate;
-}
-
 
 function setCurrentTime() {
     const today = new Date();
@@ -63,29 +39,6 @@ function checkTime(i) {
     if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
     return i;
 }
-
-
-
-
-/* Django Backend */
-
-async function initHome() {
-    await includeHTML();
-    setURL("http://127.0.0.1:8000/");
-
-    const usernameFromLocalStorage = localStorage.getItem('username');
-    if (usernameFromLocalStorage) {
-        greetingUsers(usernameFromLocalStorage);
-    } else {
-
-    }
-
-    activeHomeNavLink();
-    setCurrentDate();
-    setCurrentTime();
-}
-
-
 
 
 /* async function getCurrentUser() {
@@ -133,6 +86,16 @@ function greetingUsers() {
 
     setCurrentTime();
     setCurrentDate();
+}
+
+function setCurrentDate() {
+    let currentDate = new Date().toLocaleString("default", {
+        "year": "numeric",
+        "month": "long",
+        "day": "numeric",
+    });
+
+    document.getElementById('date').innerHTML = currentDate;
 }
 
 
