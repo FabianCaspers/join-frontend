@@ -1,6 +1,6 @@
 async function initBoard() {
     await includeHTML();
-    setURL("https://darkjoin.fabiancaspers.com/smallest_backend");
+    setURL("http://127.0.0.1:8000/");
     await loadAllTasks(); // Es wird gewartet bis alles geladen ist.
     renderTasks(); // Dann wird gerendert.
     activeBoardNavLink();
@@ -116,18 +116,31 @@ function allowDrop(ev) {
 }
 
 
-async function deleteTask(foo) {
-    let id;
-
-    allTasks.forEach((t, index) => {
-        if(t.id === foo) id = index;
+async function deleteTaskFromBackend(taskId) {
+    const response = await fetch(`http://127.0.0.1:8000/add_task/${taskId}/`, {
+        method: 'DELETE',
     });
 
-    allTasks.splice(id, 1);
-    closeDetailTaskDialog();
-    renderTasks();
-    await saveAllTasks();
+    if (response.status !== 204) {
+        throw new Error('Failed to delete task from backend');
+    }
 }
+
+async function deleteTask(taskId) {
+    try {
+        await deleteTaskFromBackend(taskId);
+        const taskIndex = allTasks.findIndex(t => t.id === taskId);
+        if (taskIndex !== -1) {
+            allTasks.splice(taskIndex, 1);
+        }
+        closeDetailTaskDialog();
+        renderTasks();
+    } catch (error) {
+        console.error(error);
+        alert('Failed to delete task. Please try again.');
+    }
+}
+
 
 
 function openAddTaskDialog() {
