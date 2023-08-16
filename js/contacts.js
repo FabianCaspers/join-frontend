@@ -1,6 +1,6 @@
 async function initContacts() {
     await includeHTML();
-    setURL("https://darkjoin.fabiancaspers.com/smallest_backend");
+    setURL("http://127.0.0.1:8000/contacts/");
     await loadAllContacts();
     activeContactsNavLink();
     showAllContacts();
@@ -10,6 +10,9 @@ async function initContacts() {
 let allInitials = [];
 let allNames = [];
 let allContacts = [];
+let color = getRandomColor();
+console.log("Color inside addNewContact:", color);
+
 
 
 async function addNewContact(e) {
@@ -20,19 +23,20 @@ async function addNewContact(e) {
     let contactPhone = document.getElementById('contact-phone');
     let contactCompany = document.getElementById('contact-company');
 
-    contact = {
+    let contact = {
         'name': contactName.value,
         'email': contactEmail.value,
-        'phone': contactPhone.value,
+        'number': contactPhone.value,
         'company': contactCompany.value,
         'color': getRandomColor()
     }
 
-    allContacts.push(contact);
-
-    await saveAllContacts();
-    showAllContacts();
-    closeNewContactDialog();
+    let savedContact = await saveAllContacts(contact);
+    if (savedContact) {
+        allContacts.push(savedContact);
+        showAllContacts();
+        closeNewContactDialog();
+    }
 
     contactName.value = '';
     contactEmail.value = '';
@@ -239,6 +243,7 @@ function getRandomColor() {
     for (var i = 0; i < 6; i++) {
         color += letters[Math.floor(Math.random() * 16)];
     }
+    console.log("Generated color:", color);
     return color;
 }
 
@@ -262,12 +267,33 @@ function closeNewContactDialog() {
 }
 
 
-async function saveAllContacts() {
-    await backend.setItem('allContacts', JSON.stringify(allContacts));
+async function saveAllContacts(contact) {
+    const response = await fetch("http://127.0.0.1:8000/contacts/", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(contact),
+    });
+    const data = await response.json();
+
+    if (response.status !== 201) {
+        console.error('Failed to save contact:', await response.text());
+        return null;
+    }
+    return data;
 }
 
 
 async function loadAllContacts() {
-    await downloadFromServer();
-    allContacts = JSON.parse(backend.getItem('allContacts')) || [];
+    const response = await fetch("http://127.0.0.1:8000/contacts/");
+
+    if (response.status !== 200) {
+        console.error('Failed to fetch contacts:', await response.text());
+        return [];
+    }
+
+    const data = await response.json();
+    allContacts = Array.isArray(data) ? data : []; 
+    return allContacts;
 }
