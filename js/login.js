@@ -1,6 +1,5 @@
 async function initLogin() {
     setURL("http://127.0.0.1:8000/");
-
 }
 
 
@@ -26,33 +25,6 @@ function closeSignUpDialog() {
     signUpDialog.classList.add('d-none');
     logInDialog.classList.remove('d-none');
 }
-
-
-/* async function signUp(e) {
-    e.preventDefault();
-
-    let name = document.getElementById('signup-name');
-    let email = document.getElementById('signup-mail');
-    let password = document.getElementById('signup-password');
-
-    let user = {
-        'name': name.value,
-        'email': email.value,
-        'password': password.value
-    };
-
-    allUsers.push(user);
-    await saveAllUsers();
-
-    name.value = '';
-    email.value = '';
-    password.value = '';
-
-    signUpNotification();
-    closeSignUpDialog();
-
-    return false;
-} */
 
 
 async function saveAllUsers() {
@@ -88,38 +60,6 @@ function signUpNotification() {
     setTimeout(function () {
         document.getElementById('notification-signup').classList.add('d-none')
     }, 3000)
-}
-
-
-/* async function logIn() {
-    let email = document.getElementById('login-mail');
-    let password = document.getElementById('login-password');
-    let user = allUsers.find(u => u.email == email.value && u.password == password.value);
-
-
-    if (user) {
-        currentUser = user.name;
-        await saveCurrentUser()
-        email.classList.remove('wrong-email')
-        password.classList.remove('wrong-password')
-        email.classList.add('correct-email')
-        password.classList.add('correct-password')
-        // checkHref();
-
-    } else {
-        email.classList.add('wrong-email')
-        password.classList.add('wrong-password')
-        email.classList.remove('correct-email')
-        password.classList.remove('correct-password')
-    }
-
-} */
-
-
-async function guestLogin() {
-    currentUser = 'Guest';
-    await saveCurrentUser();
-    // checkHref();
 }
 
 
@@ -273,12 +213,7 @@ async function logIn() {
     } catch (error) {
         console.error('An error occurred:', error);
     }
-}/*  else {
-        email.classList.add('wrong-email');
-        password.classList.add('wrong-password');
-        email.classList.remove('correct-email');
-        password.classList.remove('correct-password');
-    } */
+}
 
 
 // Funktion zum Abrufen des CSRF-Tokens
@@ -287,3 +222,33 @@ function getCSRFToken() {
     if (!csrfCookie) return null;
     return csrfCookie.split('=')[1];
 }
+
+async function guestLogin() {
+    let email = "guest@join.com";
+    let password = "Guest1234";
+
+    try {
+        const response = await fetch('http://127.0.0.1:8000/login/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 'email': email, 'password': password }),
+        });
+
+        let json = await response.json();
+        localStorage.setItem('token', json.token);
+
+        if (response.ok) {
+            currentUser = 'Guest';
+            localStorage.setItem('token', json.token);
+            localStorage.setItem('username', json.username);
+            window.location.href = '/html/home.html';
+        } else {
+            console.error('Gast-Login fehlgeschlagen:', json.detail);
+        }
+    } catch (error) {
+        console.error('Fehler beim Gast-Login:', error);
+    }
+}
+
