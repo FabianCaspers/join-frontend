@@ -14,7 +14,6 @@ let color = getRandomColor();
 console.log("Color inside addNewContact:", color);
 
 
-
 async function addNewContact(e) {
     e.preventDefault();
 
@@ -31,12 +30,14 @@ async function addNewContact(e) {
         'color': getRandomColor()
     }
 
+
     let savedContact = await saveAllContacts(contact);
     if (savedContact) {
         allContacts.push(savedContact);
         showAllContacts();
         closeNewContactDialog();
     }
+
 
     contactName.value = '';
     contactEmail.value = '';
@@ -66,7 +67,6 @@ function getInitials() {
     // Duplikate entfernen:
     allInitials = [...new Set(allInitials)];
 }
-
 
 
 function getAllNames() {
@@ -100,7 +100,6 @@ function renderInitialBoxes() {
                 <div id="contact-section${i}" class="contact-section"></div>
             </div>
         `;
-
         filterNames(i);
     }
 }
@@ -131,17 +130,24 @@ function renderContactToInitials(j) {
 }
 
 
-function renderContactDetails(j) {
+function renderContactDetails(contactIndex) {
+
+    let contact = allContacts[contactIndex];
+    if (!contact) {
+        console.error(`No contact found with ID ${contactIndex}`);
+        return;
+    }
+    
     let contactDetailsContainer = document.getElementById('contact-detail');
     contactDetailsContainer.innerHTML = '';
 
     contactDetailsContainer.innerHTML = /*html*/ `
         <div class="contact-details-header">
-            <div class="contact-circle-container" style="background-color: ${allContacts[j]['color']}">
-                <p class="initials">${allContacts[j]['name'].split(" ").map(word => word[0]).join("")}</p>
+            <div class="contact-circle-container" style="background-color: ${contact['color']}">
+                <p class="initials">${contact['name'].split(" ").map(word => word[0]).join("")}</p>
             </div>
             <div class="contact-name-container">
-                <p class="contact-name">${allContacts[j]['name']}</p>
+                <p class="contact-name">${contact['name']}</p>
             </div>
         </div>
         <div class="contact-information-container">
@@ -149,18 +155,18 @@ function renderContactDetails(j) {
         </div>
         <div class="contact-email-container">
             <p class="headline">Email</p>
-            <p class="mail-address">${allContacts[j]['email']}</p>
+            <p class="mail-address">${contact['email']}</p>
         </div>
         <div class="contact-email-container">
             <p class="headline">Phone</p>
-            <p class="phone-number">${allContacts[j]['phone']}</p>
+            <p class="phone-number">${contact['number']}</p>
         </div>
         <div class="contact-company-container">
             <p class="headline">Company</p>
-            <p class="company-name">${allContacts[j]['company']}</p>
+            <p class="company-name">${contact['company']}</p>
         </div>
     `;
-    showDeleteContactButton(j);
+    showDeleteContactButton(contactIndex);
 }
 
 
@@ -217,11 +223,11 @@ function closeContactDetailsMobile() {
 }
 
 
-function showDeleteContactButton(j) {
+function showDeleteContactButton(contactIndex) {
     let buttonContainer = document.getElementById('delete-button-container');
     buttonContainer.innerHTML = '';
     buttonContainer.innerHTML += /*html*/ `
-        <input onclick="deleteContact(${j})" type="button" id="delete-button" class="d-none delete-contact-button" type="button" value="Delete Contact"></a>
+        <input onclick="deleteContact(${contactIndex})" type="button" id="delete-button" class="d-none delete-contact-button" type="button" value="Delete Contact"></a>
     `;
 
     let deleteButton = document.getElementById('delete-button');
@@ -229,11 +235,24 @@ function showDeleteContactButton(j) {
 }
 
 
-async function deleteContact(j) {
-    allContacts.splice(j, 1);
-    await saveAllContacts();
-    document.getElementById('contact-detail').innerHTML = '';
-    showAllContacts();
+async function deleteContact(contactIndex) {
+    let contactId = allContacts[contactIndex].id;
+
+    try {
+        let response = await fetch(`http://127.0.0.1:8000/contacts/${contactId}/`, {
+            method: 'DELETE'
+        });
+
+        if (response.ok) {
+            allContacts.splice(contactIndex, 1);
+            showAllContacts();
+            location.reload();
+        } else {
+            console.error('Failed to delete the contact:', await response.text());
+        }
+    } catch (error) {
+        console.error('Error deleting the contact:', error);
+    }
 }
 
 
@@ -252,7 +271,6 @@ function activeContactsNavLink() {
     document.getElementById('contacts-link').classList.add('active-link');
     document.getElementById('contacts-link-mobile').classList.add('active-link');
 }
-
 
 
 function openNewContactDialog() {
