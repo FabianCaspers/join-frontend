@@ -1,8 +1,8 @@
 async function initBoard() {
     await includeHTML();
     setURL("http://127.0.0.1:8000/");
-    await loadAllTasks(); // Es wird gewartet bis alles geladen ist.
-    renderTasks(); // Dann wird gerendert.
+    await loadAllTasks();
+    renderTasks(); 
     activeBoardNavLink();
 }
 
@@ -83,7 +83,6 @@ function generateTaskHtml(i, task) {
             </div>
             <div class="card-footer">
                 <div id="assigned-to-container${i}" class="assigned-to-container ${task['assigned']}" title="Assigned to: ${task['assigned']}">
-                    <!-- Mit folgender Syntax, lassen sich die Anfangsbuchstaben von einem String anzeigen: -->
                     <p>${task['assigned'].split(" ").map(word => word[0]).join("")}</p>
                 </div>
                 <div class="prio-container" id="prio-container${i}">
@@ -95,20 +94,37 @@ function generateTaskHtml(i, task) {
 }
 
 
-//Drag and Drop:
 function startDragging(task) {
     currentDraggedElement = task;
 }
 
 
 async function moveTo(containerType) {
-    let array = allTasks.find(t => t.id === currentDraggedElement)
-    array['status'] = containerType;
+    let task = allTasks.find(t => t.id === currentDraggedElement);
+    task['status'] = containerType;
+    
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/add_task/${task.id}/`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({status: containerType})
+        });
+        console.log(task.id);
 
-    renderTasks();
-    await saveAllTasks();
-    console.log('this is containertype.', containerType);
+        if (response.status !== 200) {
+            throw new Error('Failed to update task in backend');
+        }
+
+        renderTasks();
+
+    } catch (error) {
+        console.error(error);
+        alert('Failed to update task status. Please try again.');
+    }
 }
+
 
 
 function allowDrop(ev) {
@@ -140,7 +156,6 @@ async function deleteTask(taskId) {
         alert('Failed to delete task. Please try again.');
     }
 }
-
 
 
 function openAddTaskDialog() {

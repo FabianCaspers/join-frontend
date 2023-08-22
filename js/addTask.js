@@ -22,7 +22,7 @@ async function saveAllTasks(task) {
     });
     const data = await response.json();
 if (response.status === 400) {
-    
+    console.error("Fehler 400 beim Speichern von Aufgaben:", await response.text());
 }
     return data;
 }

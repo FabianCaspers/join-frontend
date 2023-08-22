@@ -1,4 +1,17 @@
-function editTask(id) {
+let currentEditedTaskId = null;
+
+async function loadTasksFromBackend() {
+    const response = await fetch('http://127.0.0.1:8000/add_task/');
+    if (response.ok) {
+        allTasks = await response.json();
+    } else {
+        console.error("Fehler beim Laden der Tasks:", await response.text());
+    }
+}
+
+
+function editTask(taskId) {
+    currentEditedTaskId = taskId;
     let editTitle = document.getElementById('task-title-edit');
     let editDescription = document.getElementById('task-description-edit');
     let editDueDate = document.getElementById('task-duedate-edit');
@@ -13,18 +26,44 @@ function editTask(id) {
         'assigned': editAssignedTo.value
     };
 
-    updateCurrentTask(id, editTask);
+    updateCurrentTask(taskId, editTask);
 }
 
 
-async function updateCurrentTask(id, editTask) {
-    allTasks[id]['title'] = editTask['title'];
-    allTasks[id]['description'] = editTask['description'];
-    allTasks[id]['dueDate'] = editTask['dueDate'];
-    allTasks[id]['assigned'] = editTask['assigned'];
-    allTasks[id]['prio'] = currentTaskPrio;
 
-    await saveAllTasks();
+async function updateCurrentTask(taskId, editTask) {
+    console.log(taskId, "updateCurrentTask aufgerufen");
+    console.log("taskId:", taskId);
+    console.log("allTasks:", allTasks);
+
+    let taskToUpdate = allTasks.find(task => task.id === taskId);
+
+    if (!taskToUpdate) {
+        console.error(`Task mit ID ${taskId} nicht gefunden.`);
+        return;
+    }
+
+    taskToUpdate.title = editTask['title'];
+    taskToUpdate.description = editTask['description'];
+    taskToUpdate.dueDate = editTask['dueDate'];
+    taskToUpdate.assigned = editTask['assigned'];
+    taskToUpdate.prio = currentTaskPrio;
+
+    const response = await fetch(`http://127.0.0.1:8000/add_task/${taskId}/`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(taskToUpdate)
+    });
+    console.log(taskId);
+
+    if (response.ok) {
+        console.log("Task erfolgreich aktualisiert!");
+    } else {
+        console.error("Fehler beim Aktualisieren des Tasks:", await response.text());
+    }
+
     renderTasks();
     closeDetailTaskDialog();
 }
@@ -86,11 +125,11 @@ function addEditTaskPrio() {
 
     if (urgent == true) {
         currentTaskPrio = urgentBtnVal;
-    } else{
+    } else {
         if (medium == true) {
             currentTaskPrio = mediumBtnVal;
         } else {
-            if(low = true) {
+            if (low = true) {
                 currentTaskPrio = lowBtnVal;
             }
         }
@@ -129,7 +168,7 @@ function renderEditTaskDialog(id) {
 
     taskDialog.innerHTML = /*html*/ `
         <div class="edit-task-cnt">
-            <form onsubmit="editTask(${id}); return false;">
+            <form onsubmit="editTask(${allTasks[id].id}); return false;">
             <img onclick="closeDetailTaskDialog()" class="close-icon-dialog" src="../assets/icons/close_icon.png" alt="">
                 <div class="form-container-edit-task">
 
