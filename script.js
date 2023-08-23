@@ -1,6 +1,6 @@
 async function init() {
     await includeHTML();
-    setURL("https://darkjoin.fabiancaspers.com/smallest_backend");
+    setURL("http://127.0.0.1:8000/");
 }
 
 

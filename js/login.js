@@ -106,10 +106,13 @@ async function onSubmit(event) {
 
 
 function action(formData) {
-    const input = "https://join.fabiancaspers.com/login/send_mail.php";
+    const input = "http://127.0.0.1:8000/send_reset_email/";
     const requestInit = {
         method: 'post',
-        body: formData
+        body: formData,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+        }
     };
 
     return fetch(
@@ -117,6 +120,7 @@ function action(formData) {
         requestInit
     );
 }
+
 
 
 function sentEmailNotification() {
