@@ -1,6 +1,6 @@
 async function initContacts() {
     await includeHTML();
-    setURL("http://127.0.0.1:8000/contacts/");
+    setURL("https://fabiancaspersdjango.pythonanywhere.com/contacts/");
     await loadAllContacts();
     activeContactsNavLink();
     showAllContacts();
@@ -239,7 +239,7 @@ async function deleteContact(contactIndex) {
     let contactId = allContacts[contactIndex].id;
 
     try {
-        let response = await fetch(`http://127.0.0.1:8000/contacts/${contactId}/`, {
+        let response = await fetch(`https://fabiancaspersdjango.pythonanywhere.com/contacts/${contactId}/`, {
             method: 'DELETE'
         });
 
@@ -286,7 +286,7 @@ function closeNewContactDialog() {
 
 
 async function saveAllContacts(contact) {
-    const response = await fetch("http://127.0.0.1:8000/contacts/", {
+    const response = await fetch("https://fabiancaspersdjango.pythonanywhere.com/contacts/", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -304,7 +304,7 @@ async function saveAllContacts(contact) {
 
 
 async function loadAllContacts() {
-    const response = await fetch("http://127.0.0.1:8000/contacts/");
+    const response = await fetch("https://fabiancaspersdjango.pythonanywhere.com/contacts/");
 
     if (response.status !== 200) {
         console.error('Failed to fetch contacts:', await response.text());

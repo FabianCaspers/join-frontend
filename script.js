@@ -1,6 +1,6 @@
 async function init() {
     await includeHTML();
-    setURL("http://127.0.0.1:8000/");
+    setURL("https://fabiancaspersdjango.pythonanywhere.com/");
 }
 
 

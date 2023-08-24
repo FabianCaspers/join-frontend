@@ -1,6 +1,6 @@
 async function initBoard() {
     await includeHTML();
-    setURL("http://127.0.0.1:8000/");
+    setURL("https://fabiancaspersdjango.pythonanywhere.com/");
     await loadAllTasks();
     renderTasks(); 
     activeBoardNavLink();
@@ -104,7 +104,7 @@ async function moveTo(containerType) {
     task['status'] = containerType;
     
     try {
-        const response = await fetch(`http://127.0.0.1:8000/add_task/${task.id}/`, {
+        const response = await fetch(`https://fabiancaspersdjango.pythonanywhere.com/add_task/${task.id}/`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -133,7 +133,7 @@ function allowDrop(ev) {
 
 
 async function deleteTaskFromBackend(taskId) {
-    const response = await fetch(`http://127.0.0.1:8000/add_task/${taskId}/`, {
+    const response = await fetch(`https://fabiancaspersdjango.pythonanywhere.com/add_task/${taskId}/`, {
         method: 'DELETE',
     });
 

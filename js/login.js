@@ -1,5 +1,5 @@
 async function initLogin() {
-    setURL("http://127.0.0.1:8000/");
+    setURL("https://fabiancaspersdjango.pythonanywhere.com/");
 }
 
 
@@ -106,7 +106,7 @@ async function onSubmit(event) {
 
 
 function action(formData) {
-    const input = "http://127.0.0.1:8000/send_reset_email/";
+    const input = "https://fabiancaspersdjango.pythonanywhere.com/send_reset_email/";
     const requestInit = {
         method: 'post',
         body: formData,
@@ -158,7 +158,7 @@ async function signUp(e) {
     };
 
     try {
-        const response = await fetch('http://127.0.0.1:8000/register/', {
+        const response = await fetch('https://fabiancaspersdjango.pythonanywhere.com/register/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -192,7 +192,7 @@ async function logIn() {
         if (user) {
             currentUser = user.name; */
     try {
-        const response = await fetch('http://127.0.0.1:8000/login/', {
+        const response = await fetch('https://fabiancaspersdjango.pythonanywhere.com/login/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -232,7 +232,7 @@ async function guestLogin() {
     let password = "Guest1234";
 
     try {
-        const response = await fetch('http://127.0.0.1:8000/login/', {
+        const response = await fetch('https://fabiancaspersdjango.pythonanywhere.com/login/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

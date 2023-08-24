@@ -1,19 +1,19 @@
 async function initAddTask() {
     await includeHTML();
-    setURL("http://127.0.0.1:8000/add_task/");
+    setURL("https://fabiancaspersdjango.pythonanywhere.com//add_task/");
     await loadAllTasks();
     activeAddTaskNavLink();
 }
 
 
 async function loadAllTasks() {
-    const response = await fetch("http://127.0.0.1:8000/add_task/");
+    const response = await fetch("https://fabiancaspersdjango.pythonanywhere.com/add_task/");
     allTasks = await response.json();
 }
 
 
 async function saveAllTasks(task) {
-    const response = await fetch("http://127.0.0.1:8000/add_task/", {
+    const response = await fetch("https://fabiancaspersdjango.pythonanywhere.com/add_task/", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -111,7 +111,7 @@ function activateLowButton() {
 
 
 async function deleteAllTasks() {
-    const response = await fetch("http://127.0.0.1:8000/delete_all_tasks/", {
+    const response = await fetch("https://fabiancaspersdjango.pythonanywhere.com/delete_all_tasks/", {
         method: 'DELETE',
     });
 

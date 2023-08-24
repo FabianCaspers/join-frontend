@@ -1,5 +1,5 @@
 async function initResetPassword() {
-    setURL("http://127.0.0.1:8000/");
+    setURL("https://fabiancaspersdjango.pythonanywhere.com/");
 }
 
 
@@ -21,7 +21,7 @@ async function onSubmitPW(e) {
     
     const newPW = document.getElementById('password').value;
     
-    const response = await fetch(`http://127.0.0.1:8000/reset_password/${uidb64}/${token}/`, {
+    const response = await fetch(`https://fabiancaspersdjango.pythonanywhere.com/reset_password/${uidb64}/${token}/`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'

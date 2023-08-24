@@ -2,7 +2,7 @@
 
 async function initHome() {
     await includeHTML();
-    setURL("http://127.0.0.1:8000/");
+    setURL("https://fabiancaspersdjango.pythonanywhere.com/");
 
     const usernameFromLocalStorage = localStorage.getItem('username');
     if (usernameFromLocalStorage) {

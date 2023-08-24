@@ -1,7 +1,7 @@
 let currentEditedTaskId = null;
 
 async function loadTasksFromBackend() {
-    const response = await fetch('http://127.0.0.1:8000/add_task/');
+    const response = await fetch('https://fabiancaspersdjango.pythonanywhere.com/add_task/');
     if (response.ok) {
         allTasks = await response.json();
     } else {
@@ -49,7 +49,7 @@ async function updateCurrentTask(taskId, editTask) {
     taskToUpdate.assigned = editTask['assigned'];
     taskToUpdate.prio = currentTaskPrio;
 
-    const response = await fetch(`http://127.0.0.1:8000/add_task/${taskId}/`, {
+    const response = await fetch(`https://fabiancaspersdjango.pythonanywhere.com/add_task/${taskId}/`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',

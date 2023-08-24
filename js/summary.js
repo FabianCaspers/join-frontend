@@ -1,6 +1,6 @@
 async function initSummary() {
     await includeHTML();
-    setURL("https://darkjoin.fabiancaspers.com/smallest_backend");
+    setURL("https://fabiancaspersdjango.pythonanywhere.com/");
     await loadAllTasks();
     loadAllCounters();
     activeSummaryNavLink();
