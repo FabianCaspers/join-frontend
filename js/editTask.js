@@ -49,7 +49,7 @@ async function updateCurrentTask(taskId, editTask) {
     taskToUpdate.assigned = editTask['assigned'];
     taskToUpdate.prio = currentTaskPrio;
 
-    const response = await fetch(`https://fabiancaspersdjango.pythonanywhere.com/add_task/${taskId}/`, {
+    const response = await fetch(`https://fabiancaspersdjango.pythonanywhere.com/task/${taskId}/`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',

@@ -1,19 +1,19 @@
 async function initAddTask() {
     await includeHTML();
-    setURL("https://fabiancaspersdjango.pythonanywhere.com//add_task/");
+    setURL("https://fabiancaspersdjango.pythonanywhere.com//task/");
     await loadAllTasks();
     activeAddTaskNavLink();
 }
 
 
 async function loadAllTasks() {
-    const response = await fetch("https://fabiancaspersdjango.pythonanywhere.com/add_task/");
+    const response = await fetch("https://fabiancaspersdjango.pythonanywhere.com/task/");
     allTasks = await response.json();
 }
 
 
 async function saveAllTasks(task) {
-    const response = await fetch("https://fabiancaspersdjango.pythonanywhere.com/add_task/", {
+    const response = await fetch("https://fabiancaspersdjango.pythonanywhere.com/task/", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
