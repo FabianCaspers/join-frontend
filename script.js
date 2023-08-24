@@ -1,4 +1,5 @@
 async function init() {
+    extractTokenFromURL();
     await includeHTML();
     setURL("https://fabiancaspersdjango.pythonanywhere.com/");
 }
@@ -8,3 +9,20 @@ async function init() {
 function showLogOutDialog() {
     document.getElementById('dialog').classList.toggle('d-none');
 }
+
+let token = "";
+
+function extractTokenFromURL() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    userToken = urlParams.get('token');
+    console.log(token)
+}
+
+
+function handleLogout() {
+    const token = localStorage.getItem('token');
+    localStorage.removeItem('token');
+    window.location.href = "../index.html";
+}
+

@@ -51,5 +51,6 @@ function passwordNotification() {
 
 function backToLoginBtn() {
     document.getElementById('back-to-login').classList.remove('d-none');
+    window.location.href = '/html/index.html';
 }
 
