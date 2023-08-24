@@ -1,41 +1,45 @@
 async function initResetPassword() {
-    setURL("https://darkjoin.fabiancaspers.com/smallest_backend");
-    await loadAllUsers();
-    email = getEmailUrlParameter();
-    getUser();
+    setURL("http://127.0.0.1:8000/");
 }
 
 
-let user = "";
-let email = "";
-let newPW = "";
+let uidb64 = "";
+let token = "";
 
-
-function getUser() {
-    user = allUsers.find( u => u.email === email)
-}
-
-
-function getEmailUrlParameter() {
+function extractTokenAndUIDFromURL() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const email = urlParams.get('email');
-    return email;
+    uidb64 = urlParams.get('uid');
+    token = urlParams.get('token');
+    console.log(token, uidb64)
 }
-
 
 async function onSubmitPW(e) {
     e.preventDefault();
-    newPW = document.getElementById('password').value;
-    user.password = newPW;
-    document.getElementById('password').value = "";
-    await saveAllUsers();
-    await loadAllUsers();
-    passwordNotification();
-    backToLoginBtn();
-    return false;
-}
+    
+    extractTokenAndUIDFromURL();
+    
+    const newPW = document.getElementById('password').value;
+    
+    const response = await fetch(`http://127.0.0.1:8000/reset_password/${uidb64}/${token}/`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ password: newPW })
+    });
 
+    const data = await response.json();
+
+    if (response.status === 200) {
+        passwordNotification();
+        backToLoginBtn();
+    } else {
+        alert(data.error || 'Ein Fehler ist aufgetreten.');
+    }
+
+    document.getElementById('password').value = "";
+}
 
 function passwordNotification() {
     document.getElementById('notification-password').classList.remove('d-none');
@@ -45,7 +49,7 @@ function passwordNotification() {
     }, 2500)
 }
 
-
 function backToLoginBtn() {
     document.getElementById('back-to-login').classList.remove('d-none');
 }
+
