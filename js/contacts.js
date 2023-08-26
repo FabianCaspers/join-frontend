@@ -236,11 +236,15 @@ function showDeleteContactButton(contactIndex) {
 
 
 async function deleteContact(contactIndex) {
+    const token = localStorage.getItem('token');
     let contactId = allContacts[contactIndex].id;
 
     try {
         let response = await fetch(`https://fabiancaspersdjango.pythonanywhere.com/contacts/${contactId}/`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Token ${token}`,
+            },
         });
 
         if (response.ok) {
@@ -254,6 +258,7 @@ async function deleteContact(contactIndex) {
         console.error('Error deleting the contact:', error);
     }
 }
+
 
 
 function getRandomColor() {
@@ -286,10 +291,12 @@ function closeNewContactDialog() {
 
 
 async function saveAllContacts(contact) {
+    const token = localStorage.getItem('token');
     const response = await fetch("https://fabiancaspersdjango.pythonanywhere.com/contacts/", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Token ${token}`,
         },
         body: JSON.stringify(contact),
     });
@@ -303,8 +310,14 @@ async function saveAllContacts(contact) {
 }
 
 
+
 async function loadAllContacts() {
-    const response = await fetch("https://fabiancaspersdjango.pythonanywhere.com/contacts/");
+    const token = localStorage.getItem('token');
+    const response = await fetch("https://fabiancaspersdjango.pythonanywhere.com/contacts/", {
+        headers: {
+            'Authorization': `Token ${token}`,
+        },
+    });
 
     if (response.status !== 200) {
         console.error('Failed to fetch contacts:', await response.text());
@@ -312,6 +325,6 @@ async function loadAllContacts() {
     }
 
     const data = await response.json();
-    allContacts = Array.isArray(data) ? data : []; 
+    allContacts = Array.isArray(data) ? data : [];
     return allContacts;
 }
