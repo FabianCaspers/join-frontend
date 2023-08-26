@@ -7,23 +7,31 @@ async function initAddTask() {
 
 
 async function loadAllTasks() {
-    const response = await fetch("https://fabiancaspersdjango.pythonanywhere.com/task/");
+    const token = localStorage.getItem('token');
+    const response = await fetch("https://fabiancaspersdjango.pythonanywhere.com/task/", {
+        headers: {
+            'Authorization': `Token ${token}`,
+        }
+    });
     allTasks = await response.json();
 }
 
 
+
 async function saveAllTasks(task) {
+    const token = localStorage.getItem('token');
     const response = await fetch("https://fabiancaspersdjango.pythonanywhere.com/task/", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Token ${token}`,
         },
         body: JSON.stringify(task),
     });
     const data = await response.json();
-if (response.status === 400) {
-    console.error("Fehler 400 beim Speichern von Aufgaben:", await response.text());
-}
+    if (response.status === 400) {
+        console.error("Fehler 400 beim Speichern von Aufgaben:", await response.text());
+    }
     return data;
 }
 
@@ -111,8 +119,12 @@ function activateLowButton() {
 
 
 async function deleteAllTasks() {
+    const token = localStorage.getItem('token');
     const response = await fetch("https://fabiancaspersdjango.pythonanywhere.com/delete_all_tasks/", {
         method: 'DELETE',
+        headers: {
+            'Authorization': `Token ${token}`,
+        },
     });
 
     if (response.status !== 204) {

@@ -102,12 +102,14 @@ function startDragging(task) {
 async function moveTo(containerType) {
     let task = allTasks.find(t => t.id === currentDraggedElement);
     task['status'] = containerType;
+    const token = localStorage.getItem('token');
     
     try {
         const response = await fetch(`https://fabiancaspersdjango.pythonanywhere.com/task/${task.id}/`, {
             method: 'PATCH',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`,
             },
             body: JSON.stringify({status: containerType})
         });
@@ -133,8 +135,12 @@ function allowDrop(ev) {
 
 
 async function deleteTaskFromBackend(taskId) {
+    const token = localStorage.getItem('token');
     const response = await fetch(`https://fabiancaspersdjango.pythonanywhere.com/task/${taskId}/`, {
         method: 'DELETE',
+        headers: {
+            'Authorization': `Token ${token}`,
+        },
     });
 
     if (response.status !== 204) {
