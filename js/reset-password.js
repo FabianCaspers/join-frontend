@@ -4,7 +4,7 @@ async function initResetPassword() {
 
 
 let uidb64 = "";
-let token = "";
+// let token = "";
 
 function extractTokenAndUIDFromURL() {
     const queryString = window.location.search;
