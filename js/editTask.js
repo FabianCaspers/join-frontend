@@ -1,7 +1,7 @@
 let currentEditedTaskId = null;
 
 async function loadTasksFromBackend() {
-    const response = await fetch('https://fabiancaspersdjango.pythonanywhere.com/add_task/');
+    const response = await fetch('https://fabiancaspersdjango.pythonanywhere.com/task/');
     if (response.ok) {
         allTasks = await response.json();
     } else {
@@ -53,9 +53,11 @@ async function updateCurrentTask(taskId, editTask) {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Token ${localStorage.getItem('token')}`
         },
         body: JSON.stringify(taskToUpdate)
     });
+
     console.log(taskId);
 
     if (response.ok) {
