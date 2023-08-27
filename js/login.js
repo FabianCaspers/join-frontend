@@ -187,10 +187,7 @@ async function signUp(e) {
 async function logIn() {
     let email = document.getElementById('login-mail');
     let password = document.getElementById('login-password');
-    /*     let user = allUsers.find(u => u.email == email.value && u.password == password.value);
-    
-        if (user) {
-            currentUser = user.name; */
+
     try {
         const response = await fetch('https://fabiancaspersdjango.pythonanywhere.com/login/', {
             method: 'POST',
@@ -201,16 +198,16 @@ async function logIn() {
         });
 
         let json = await response.json();
-        localStorage.setItem('token', json.token);
+        // localStorage.setItem('token', json.token);
 
         if (response.ok) {
-            localStorage.setItem('token', json.token);
+            // localStorage.setItem('token', json.token);
             localStorage.setItem('username', json.username);
             email.classList.remove('wrong-email');
             password.classList.remove('wrong-password');
             email.classList.add('correct-email');
             password.classList.add('correct-password');
-            window.location.href = '/html/home.html';
+            window.location.href = '/html/home.html?token=' + json.token;  // geändert
         } else {
             // Fehlerbehandlung, falls der Login fehlschlägt
         }
@@ -241,13 +238,13 @@ async function guestLogin() {
         });
 
         let json = await response.json();
-        localStorage.setItem('token', json.token);
+        // localStorage.setItem('token', json.token);
 
         if (response.ok) {
-            currentUser = 'Guest';
-            localStorage.setItem('token', json.token);
+            // currentUser = 'Guest';
+            // localStorage.setItem('token', json.token);
             localStorage.setItem('username', json.username);
-            window.location.href = '/html/home.html';
+            window.location.href = '/html/home.html?token=' + json.token;  // geändert
         } else {
             console.error('Gast-Login fehlgeschlagen:', json.detail);
         }

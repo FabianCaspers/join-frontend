@@ -16,11 +16,11 @@ function extractTokenAndUIDFromURL() {
 
 async function onSubmitPW(e) {
     e.preventDefault();
-    
+
     extractTokenAndUIDFromURL();
-    
+
     const newPW = document.getElementById('password').value;
-    
+
     const response = await fetch(`https://fabiancaspersdjango.pythonanywhere.com/reset_password/${uidb64}/${token}/`, {
         method: "POST",
         headers: {
@@ -30,6 +30,7 @@ async function onSubmitPW(e) {
     });
 
     const data = await response.json();
+
 
     if (response.status === 200) {
         passwordNotification();
@@ -51,6 +52,6 @@ function passwordNotification() {
 
 function backToLoginBtn() {
     document.getElementById('back-to-login').classList.remove('d-none');
-    window.location.href = '/html/index.html';
+    window.location.href = '../index.html';
 }
 
